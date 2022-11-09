@@ -25,6 +25,25 @@
   background-color: #16262E;
 }
 
+.flex-box {
+  display: flex;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.border-right {
+  margin-right: 8px;
+  padding-right: 8px;
+  border-right: 1px solid #2E4756;
+}
+
+.v-center {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 a, a:hover, a:visited{
   border: none;
   outline: none;
@@ -53,12 +72,12 @@ header > div {
 }
 
 footer {
-  padding: 6px;
+  padding: 12px;
   color: #2E4756;
   background-color: #16262E;
 }
 footer > div {
-  height: 24px;
+  display: flex;
 }
 
 body {

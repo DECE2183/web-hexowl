@@ -21,6 +21,9 @@ function begin() {
   const go = new Go();
   WebAssembly.instantiateStreaming(fetch("wasm/hexowl.wasm"), go.importObject).then((result) => {
     go.run(result.instance);
+    let out = hexowlPrompt("help");
+    printOutput(">: help");
+    printOutput(out);
   });
 
   document.querySelector("#inputField").addEventListener("keydown", (e) => {
