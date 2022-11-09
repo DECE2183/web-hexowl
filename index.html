@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Timofey Korolik (DECE2183)"/>
+    <meta name="description" content="Lightweight, flexible programmer's calculator with variables and functions."/>
+    <link href="index.css" rel="stylesheet" />
+    <title>hexowl</title>
+  </head>
+
+  <header>
+    <div>
+      hexowl
+    </div>
+  </header>
+
+  <body>
+    <div>
+      <div class="output-block">
+        <div class="output-content">
+          <div id="output"></div>
+        </div>
+      </div>
+      <div id="input">
+        <div>>:</div>
+        <div id="input-content"><input id="inputField"/></div>
+      </div>
+    </div>
+  </body>
+
+  <footer>
+    <div>
+      <a href="https://github.com/dece2183/hexowl">Github</a>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="wasm/wasm_exec.js"></script>
+  <script type="text/javascript" src="wasm/hexowl.js"></script>
+</html>
