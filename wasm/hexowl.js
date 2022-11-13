@@ -1,4 +1,7 @@
 
+var inputHistory = [];
+var inputHistoryIndex = 0;
+
 function printOutput(out) {
   let outDiv = document.querySelector("#output");
   let lines = out.split("\n");
@@ -27,12 +30,39 @@ function begin() {
   });
 
   document.querySelector("#inputField").addEventListener("keydown", (e) => {
-    if (e.keyCode != 13) return;
-    let input = e.target.value;
-    let out = hexowlPrompt(input);
-    e.target.value = "";
-    printOutput(">: " + input);
-    printOutput(out);
+    switch (e.key) {
+      case "Enter": {
+        let input = e.target.value;
+        let out = hexowlPrompt(input);
+        inputHistory.unshift(input);
+        inputHistoryIndex = -1;
+        e.target.value = "";
+        printOutput(">: " + input);
+        printOutput(out);
+        break;
+      }
+      case "ArrowUp": {
+        if (inputHistoryIndex < inputHistory.length - 1) {
+          inputHistoryIndex += 1;
+          e.target.value = inputHistory[inputHistoryIndex];
+          e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+        }
+        e.preventDefault();
+        break;
+      }
+      case "ArrowDown": {
+        if (inputHistoryIndex > 0) {
+          inputHistoryIndex -= 1;
+          e.target.value = inputHistory[inputHistoryIndex];
+          e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+        } else {
+          inputHistoryIndex = -1;
+          e.target.value = "";
+        }
+        e.preventDefault();
+        break;
+      }
+    }
   });
 }
 

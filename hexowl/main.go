@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"syscall/js"
 	"time"
@@ -10,8 +11,10 @@ import (
 	"github.com/dece2183/hexowl/utils"
 )
 
+var virtOut bytes.Buffer
+
 func main() {
-	builtin.FuncsInit()
+	builtin.FuncsInit(&virtOut)
 
 	js.Global().Set("hexowlPrompt", js.FuncOf(prompt))
 
@@ -30,6 +33,9 @@ func calculate(words []utils.Word) (err error, output string) {
 	if err != nil {
 		return
 	}
+
+	output = virtOut.String()
+	virtOut.Reset()
 
 	if val != nil {
 		switch v := val.(type) {
