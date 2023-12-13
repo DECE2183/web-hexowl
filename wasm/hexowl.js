@@ -17,6 +17,13 @@ function printOutput(out) {
     outDiv.append(newln);
     newln.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   });
+}
+
+function loadEnv() {
+
+}
+
+function saveEnv(name = "") {
 
 }
 
