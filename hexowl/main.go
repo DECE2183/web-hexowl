@@ -7,13 +7,14 @@ import (
 	"time"
 
 	"github.com/dece2183/hexowl/builtin"
+	"github.com/dece2183/hexowl/builtin/types"
 	"github.com/dece2183/hexowl/input/syntax"
 	"github.com/dece2183/hexowl/operators"
 	"github.com/dece2183/hexowl/utils"
 )
 
 var virtOut bytes.Buffer
-var sysDesc = builtin.System{
+var sysDesc = types.System{
 	Stdout: &virtOut,
 	ClearScreen: func() {
 		js.Global().Call("clearOutput")

@@ -106,6 +106,7 @@ function begin() {
     switch (e.key) {
       case "Enter": {
         let input = e.target.value;
+        if (input.length == 0) break;
         hexowlPrompt(input);
         inputHistory.unshift(input);
         inputHistoryIndex = -1;
@@ -134,6 +135,16 @@ function begin() {
         break;
       }
     }
+  });
+
+  document.querySelector("#inputEnterBtn").addEventListener("click", (e) => {
+    let inputField = document.querySelector("#inputField");
+    if (inputField.value.length == 0) return;
+    hexowlPrompt(inputField.value);
+    inputHistory.unshift(inputField.value);
+    inputHistoryIndex = -1;
+    inputField.value = "";
+    inputField.focus();
   });
 }
 

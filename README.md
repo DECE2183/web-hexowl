@@ -7,17 +7,11 @@ The web implementation of the hexowl calculator.
 ### Windows
 
 ```powershell
-cd hexwol
-```
-```powershell
-$env:GOOS='js'; $env:GOARCH='wasm'; go build -o ../wasm/hexowl.wasm
+$env:GOOS='js'; $env:GOARCH='wasm'; go build -C hexowl -o ../wasm/hexowl.wasm
 ```
 
 ### Unix
 
 ```bash
-cd hexowl
-```
-```bash
-GOOS=js GOARCH=wasm go build -o ../wasm/hexowl.wasm
+GOOS=js GOARCH=wasm go build -C hexowl -o ../wasm/hexowl.wasm
 ```
