@@ -146,6 +146,16 @@ function begin() {
     inputField.value = "";
     inputField.focus();
   });
+
+  document.querySelector("#closeHelpBtn").addEventListener("click", (e) => {
+    document.querySelector("#help-block").classList.add("hidden");
+    document.querySelector("#showHelpBtn").classList.remove("hidden");
+  });
+
+  document.querySelector("#showHelpBtn").addEventListener("click", (e) => {
+    document.querySelector("#help-block").classList.remove("hidden");
+    document.querySelector("#showHelpBtn").classList.add("hidden");
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function() {

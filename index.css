@@ -19,13 +19,22 @@
 }
 ::-webkit-scrollbar-thumb {
   background-color: #16262E66;
+  cursor: pointer;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #16262E;
+  background-color: #21353f;
 }
 
-.flex-box {
+.row {
+  flex-grow: 1;
   display: flex;
+  flex-direction: row;
+}
+
+.column {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .spacer {
@@ -41,6 +50,10 @@
 .v-center {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.hidden {
+  display: none;
 }
 
 pre {
@@ -63,24 +76,74 @@ html {
 }
 
 header {
+  display: flex;
   font-size: 36px;
   padding: 6px 12px;
   height: 42px;
   color: #E0FBFC;
   background-color: #16262E;
 }
-header > div {
-  margin-top: auto;
-  margin-bottom: auto;
-}
 
 footer {
+  display: flex;
+  flex-direction: row;
   padding: 12px;
   color: #2E4756;
   background-color: #16262E;
 }
-footer > div {
-  display: flex;
+
+button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  font-family: "Inconsolata";
+  font-size: 38px;
+  color: #E0FBFC;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #16262E;
+}
+
+table {
+  border: solid 2px #374545;
+  margin-bottom: 12px;
+}
+
+thead {
+  color: #E0FBFC;
+  background-color: #203641;
+}
+
+thead > tr > th {
+  padding: 8px 18px;
+  border-bottom: solid 2px #374545;
+}
+
+thead > tr > th + th {
+  border-left: solid 2px #374545;
+}
+
+tbody {
+  color: #C6A15B;
+  text-align: left;
+}
+
+tbody > tr:nth-child(even) {
+  background-color: #1b2d36;
+}
+
+th {
+  padding: 6px 16px;
+}
+
+tbody > tr > th + th {
+  border-left: solid 2px #2b3636;
+}
+
+tbody > tr > th:nth-child(2) {
+  font-weight: 300;
 }
 
 body {
@@ -88,44 +151,108 @@ body {
   height: 100vh;
   max-height: 100vh;
   background-color: #16262E;
-}
-body > div {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
   color: #C6A15B;
-  background-color: #2E4756;
+  display: flex;
+  flex-direction: column;
 }
 
-div.output-block {
-  flex-grow: 1;
+div.workspace-block {
   position: relative;
+  overflow: hidden;
 }
+
 div.output-content {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  flex-grow: 1;
   padding: 12px;
   overflow-y: auto;
+  background-color: #2E4756;
 }
-div#output > pre {
+#output > pre {
   margin: 0;
 }
 
-div#input {
-  display: flex;
-  background-color: #16262E66;
+#help-block {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: 560px;
+  transition: width 0.1s;
 }
-div#input > * {
+#help-block::-webkit-scrollbar {
+  width: 18px;
+  background: #141f24;
+}
+#help-block::-webkit-scrollbar-thumb {
+  background-color: #263d48;
+}
+#help-block::-webkit-scrollbar-thumb:hover {
+  background-color: #27414d;
+}
+#closeHelpBtn {
+  font-size: 28px;
+  margin-right: 6px;
+  padding-bottom: 8px;
+}
+#showHelpBtn {
+  position: absolute;
+  right: 20px;
+  top: 8px;
+  font-size: 38px;
+  width: 54px;
+  height: 54px;
+  border: 1px solid #263d48;
+}
+#showHelpBtn:hover {
+  border: 1px solid #263d48;
+  background-color: #29414d;
+}
+
+#reference-block {
+  color: #dee4e4;
+  line-height: 24px;
+  padding: 0 16px;
+}
+#reference-block > h3 {
+  color: #E0FBFC;
+  text-align: center;
+}
+#reference-block li + li {
+  margin-top: 4px;
+}
+#reference-block a {
+  text-decoration: underline;
+}
+#reference-block a:hover {
+  color: #98dddd;
+}
+
+#reference-block code, #reference-block pre {
+  background-color: #2E4756;
+  border-radius: 4px;
+  color: #C6A15B;
+  font-weight: 300;
+}
+#reference-block code {
+  padding: 1px 4px;
+}
+#reference-block pre {
+  display: block;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+#input {
+  display: flex;
+  flex-direction: row;
+  background-color: #283c49;
+}
+#input > * {
   margin-top: auto;
   margin-bottom: auto;
 }
-div#input > span {
+#input > span {
   margin-left: 12px;
 }
-div#input > input {
+#input > input {
   margin-left: 12px;
 }
 #input-content {
@@ -144,17 +271,4 @@ div#input > input {
 #inputField:focus, #inputField:active, #inputField:hover {
   outline: none;
   border: none;
-}
-#inputEnterBtn {
-  width: 42px;
-  height: 42px;
-  border: none;
-  background: transparent;
-  font-family: "Inconsolata";
-  font-size: 38px;
-  color: #E0FBFC;
-  cursor: pointer;
-}
-#inputEnterBtn:hover {
-  background-color: #16262E;
 }

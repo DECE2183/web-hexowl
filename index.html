@@ -1,53 +1,224 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>hexowl - online calculator</title>
+
     <meta charset="utf-8"/>
     <meta name="author" content="Timofey Korolik (DECE2183)"/>
-    <meta name="description" content="Lightweight, flexible programmer's calculator with variables and functions."/>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="description" content="Web version of hexowl calculator. Hexowl is a lightweight and flexible programmer's calculator with variables and functions. The main purpose of hexowl is to perform operations on numbers regardless of their base. A single expression can contain decimal, hexadecimal and binary numbers."/>
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="120x120" href="favicon-120x120.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    
     <link href="index.css" rel="stylesheet" />
     <link href="colors.css" rel="stylesheet" />
-    <title>hexowl</title>
   </head>
 
   <body>
-    <div>
+    <header>
+      <img src="icons/hexowl.svg" style="margin-right: 8px;" height="40px" title="hexowl icon"/>
+      <div>hexowl</div>
+      <div class="spacer"></div>
+      <a href="https://github.com/dece2183/hexowl" title="hexowl sources">
+        <img src="icons/GitHub-Mark.png" style="margin-top: 2px;" height="38px" title="hexowl sources">
+      </a>
+    </header>
 
-      <header>
-        <div class="flex-box">
-          <div>hexowl</div>
-          <div class="spacer"></div>
-          <a href="https://github.com/dece2183/hexowl" title="hexowl sources">
-            <img src="icons/GitHub-Mark.png" style="padding-top: 2px;" height="38px" title="hexowl sources">
-          </a>
-        </div>
-      </header>
-
-      <div class="output-block">
+    <div class="workspace-block row">
+      <div class="column">
         <div class="output-content">
           <div id="output"></div>
         </div>
-      </div>
-      <div id="input">
-        <span>>:</span>
-        <input id="inputField" autofocus />
-        <button id="inputEnterBtn">↵</button>
-      </div>
-      
-      <footer>
-        <div>
-          <div class="spacer"></div>
-          <div class="border-right">Timofey Korolik</div>
-          <div>
-            <a href="https://github.com/dece2183" class="flex-box">
-              <img src="icons/GitHub-Mark.png" width="20px">
-              <span class="v-center" style="margin-left: 4px;">DECE2183</span>
-            </a>
-          </div>
+        <div id="input">
+          <span>>:</span>
+          <input id="inputField" autocomplete="off" autofocus />
+          <button id="inputEnterBtn">↵</button>
         </div>
-      </footer>
+      </div>
+      <button id="showHelpBtn">?</button>
+      <div id="help-block" class="hidden">
+        <header class="row">
+          <button id="closeHelpBtn">🞫</button>
+          Reference
+        </header>
 
+        <div id="reference-block">
+          <ol>
+            <li><a href="#ref-operators">Operators</a></li>
+            <li><a href="#ref-constants">Built-in constants</a></li>
+            <li><a href="#ref-functions">Built-in constants</a></li>
+            <li><a href="#ref-user-function">User functions</a></li>
+            <li><a href="#ref-user-function-variations">User function variations</a></li>
+            <li><a href="#ref-arrays">Arrays and variadic arguments</a></li>
+          </ol>
+
+          <h3 id="ref-operators">Operators</h3>
+          <table cellspacing="0" align="center">
+            <thead>
+              <tr><th>Name</th><th>Syntax</th></tr>
+            </thead>
+            <tbody>
+              <tr> <th>Positive bits count</th><th>#</th> </tr>
+              <tr> <th>Bitwise NOT</th><th>~</th> </tr>
+              <tr> <th>Bitclear (AND NOT)</th><th>&amp;~</th> </tr>
+              <tr> <th>Bitwise XOR</th><th>^</th> </tr>
+              <tr> <th>Bitwise AND</th><th>&amp;</th> </tr>
+              <tr> <th>Bitwise OR</th><th>|</th> </tr>
+              <tr> <th>Right shift</th><th>&gt;&gt;</th> </tr>
+              <tr> <th>Left shift</th><th>&lt;&lt;</th> </tr>
+              <tr> <th>Modulo</th><th>%</th> </tr>
+              <tr> <th>Division</th><th>/</th> </tr>
+              <tr> <th>Exponentiation</th><th>**</th> </tr>
+              <tr> <th>Multiplication</th><th>*</th> </tr>
+              <tr> <th>Subtraction</th><th>-</th> </tr>
+              <tr> <th>Addition</th><th>+</th> </tr>
+              <tr> <th>Logical NOT</th><th>!</th> </tr>
+              <tr> <th>Less or equal</th><th>&lt;=</th> </tr>
+              <tr> <th>More or equal</th><th>&gt;=</th> </tr>
+              <tr> <th>Less</th><th>&lt;</th> </tr>
+              <tr> <th>More</th><th>&gt;</th> </tr>
+              <tr> <th>Not equal</th><th>!=</th> </tr>
+              <tr> <th>Equal</th><th>==</th> </tr>
+              <tr> <th>Logical AND</th><th>&amp;&amp;</th> </tr>
+              <tr> <th>Logical OR</th><th>||</th> </tr>
+              <tr> <th>Enumerate</th><th>,</th> </tr>
+              <tr> <th>Bitwise OR and assign</th><th>|=</th> </tr>
+              <tr> <th>Bitwise AND and assign</th><th>&amp;=</th> </tr>
+              <tr> <th>Divide and assign</th><th>/=</th> </tr>
+              <tr> <th>Mutiply and assign</th><th>*=</th> </tr>
+              <tr> <th>Add and assign</th><th>+=</th> </tr>
+              <tr> <th>Subtract and assign</th><th>-=</th> </tr>
+              <tr> <th>Local assign</th><th>:=</th> </tr>
+              <tr> <th>Assign</th><th>=</th> </tr>
+              <tr> <th>Sequence</th><th>;</th> </tr>
+              <tr> <th>Declare function</th><th>-&gt;</th> </tr>
+            </tbody>
+          </table>
+
+          <h3 id="ref-constants">Built-in constants</h3>
+          <table cellspacing="0" align="center">
+            <thead>
+              <tr><th>Name</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+              <tr> <th>pi     </th> <th> 3.141592653589793</th> </tr>
+              <tr> <th>e      </th> <th> 2.718281828459045</th> </tr>
+              <tr> <th>true   </th> <th> 1</th> </tr>
+              <tr> <th>false  </th> <th> 0</th> </tr>
+              <tr> <th>inf    </th> <th> +Inf</th> </tr>
+              <tr> <th>nan    </th> <th> NaN</th> </tr>
+              <tr> <th>nil    </th> <th> nil</th> </tr>
+              <tr> <th>help   </th> <th> &lt;Help Message&gt;</th> </tr>
+              <tr> <th>version</th> <th> &lt;hexowl version&gt;</th> </tr>
+            </tbody>
+          </table>
+
+          <h3 id="ref-functions">Built-in functions</h3>
+          <table cellspacing="0" align="center">
+            <thead>
+              <tr><th>Name</th><th>Arguments</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr> <th> acos      </th> <th> (x)          </th> <th> The arccosine of the radian argument <code>x</code>                      </th> </tr>
+              <tr> <th> asin      </th> <th> (x)          </th> <th> The arcsine of the radian argument <code>x</code>                        </th> </tr>
+              <tr> <th> atan      </th> <th> (x)          </th> <th> The arctangent of the radian argument <code>x</code>                     </th> </tr>
+              <tr> <th> ceil      </th> <th> (x)          </th> <th> The least integer value greater than or equal to <code>x</code>          </th> </tr>
+              <tr> <th> clear     </th> <th> ( )          </th> <th> Clear screen                                                             </th> </tr>
+              <tr> <th> clfuncs   </th> <th> ( )          </th> <th> Delete user defined functions                                            </th> </tr>
+              <tr> <th> clvars    </th> <th> ( )          </th> <th> Delete user defined variables                                            </th> </tr>
+              <tr> <th> cos       </th> <th> (x)          </th> <th> The cosine of the radian argument <code>x</code>                         </th> </tr>
+              <tr> <th> envs      </th> <th> ( )          </th> <th> List all available environments                                          </th> </tr>
+              <tr> <th> exit      </th> <th> (code)       </th> <th> Exit with error <code>code</code>                                        </th> </tr>
+              <tr> <th> exp       </th> <th> (x)          </th> <th> The base-e exponential of <code>x</code>                                 </th> </tr>
+              <tr> <th> floor     </th> <th> (x)          </th> <th> The greatest integer value less than or equal to <code>x</code>          </th> </tr>
+              <tr> <th> funcs     </th> <th> ( )          </th> <th> List alailable functions                                                 </th> </tr>
+              <tr> <th> import    </th> <th> (id,unit)    </th> <th> Import unit from the working environment with <code>id</code>            </th> </tr>
+              <tr> <th> load      </th> <th> (id)         </th> <th> Load working environment with <code>id</code>                            </th> </tr>
+              <tr> <th> log10     </th> <th> (x)          </th> <th> The decimal logarithm of <code>x</code>                                  </th> </tr>
+              <tr> <th> log2      </th> <th> (x)          </th> <th> The binary logarithm of <code>x</code>                                   </th> </tr>
+              <tr> <th> logn      </th> <th> (x)          </th> <th> The natural logarithm of <code>x</code>                                  </th> </tr>
+              <tr> <th> popcnt    </th> <th> (x)          </th> <th> The number of one bits ("population count") in <code>x</code>            </th> </tr>
+              <tr> <th> pow       </th> <th> (x,y)        </th> <th> The base-<code>x</code>l of <code>y</code>                               </th> </tr>
+              <tr> <th> rand      </th> <th> (a,b)        </th> <th> The random number in the range [a,b) or [0,1) if no arguments are passed </th> </tr>
+              <tr> <th> rmfunc    </th> <th> (name)       </th> <th> Delete user function with <code>name</code>                              </th> </tr>
+              <tr> <th> rmfuncvar </th> <th> (name,varid) </th> <th> Delete user function <code>name</code>number <code>varid</code>          </th> </tr>
+              <tr> <th> rmvar     </th> <th> (name)       </th> <th> Delete user variable with <code>name</code>                              </th> </tr>
+              <tr> <th> round     </th> <th> (x)          </th> <th> The nearest integer, rounding half away from zero                        </th> </tr>
+              <tr> <th> save      </th> <th> (envname)    </th> <th> Save working environment as <code>envname</code>                         </th> </tr>
+              <tr> <th> sin       </th> <th> (x)          </th> <th> The sine of the radian argument <code>x</code>                           </th> </tr>
+              <tr> <th> sqrt      </th> <th> (x)          </th> <th> The square root of <code>x</code>                                        </th> </tr>
+              <tr> <th> tan       </th> <th> (x)          </th> <th> The tangent of the radian argument <code>x</code>                        </th> </tr>
+              <tr> <th> vars      </th> <th> ( )          </th> <th> List available variables                                                 </th> </tr>
+            </tbody>
+          </table>
+
+          <h3 id="ref-user-function">User functions</h3>
+
+          To declare a function, you must type its name, explain the arguments in <code>(</code> <code>)</code> and write the body of the function after
+          <code>-&gt;</code> operator.<br/><br />
+
+          It should look like this:
+          <pre><code>&gt;: mul(a,b) -&gt; a * b</code></pre>
+
+          Once declared, you can call this function as a builtin:
+          <pre><code>&gt;: mul(2,4)
+
+    Result: 8
+            0x8
+            0b1000
+
+    Time:   0 ms</code></pre>
+
+          <h3 id="ref-user-function-variations">User function variations</h3>
+
+          You can also create variants of functions with expressions right in the explanation of the arguments.<br/><br />
+          
+          Let's look at a simple example of declaring a factorial function:<br />
+          <pre><code>&gt;: fac(x &lt;= 1) -&gt; 1</code></pre>
+          <pre><code>&gt;: fac(x) -&gt; x * fac(x-1)</code></pre>
+          
+          When calling such a function, the interpreter tries to find a suitable variant depending on the arguments passed (in the order of declaration), and
+          then calls it.
+
+          <h3 id="ref-arrays">Arrays and variadic arguments</h3>
+
+          You can define arrays with the enumerator operator <code>,</code>:<br />
+          <pre><code>&gt;: x = 1,2,3,4</code></pre>
+          
+          All functions receive arguments as an array, so the expressions <code>foo(x)</code> and <code>foo(1,2,3,4)</code> are similar.<br /><br />
+          
+          There is a single <code>@</code> keyword to handle such things.<br />
+          If it is specified as the last argument in a function declaration,
+          it will receive an array of the arguments passed to it.<br />
+          The behavior is similar to the <code>...</code> and <code>__VA_ARGS__</code>
+          preprocessor macros in C language.<br /><br />
+          
+          An example of a function that calculates the sum of all elements of an array:<br />
+          <pre><code>&gt;: arrsum(a) -&gt; a</code></pre>
+          <pre><code>&gt;: arrsum(a, @) -&gt; a+arrsum(@)</code></pre>
+          
+          An example of a function that increments all elements of an array:<br />
+          <pre><code>&gt;: arrinc(v, a) -&gt; a+v</code></pre>
+          <pre><code>&gt;: arrinc(v, a, @) -> (a+v) , arrinc(v,@)</code></pre>
+
+        </div>
+      </div>
     </div>
+    
+    <footer>
+      <div class="spacer"></div>
+      <div class="border-right">Timofey Korolik</div>
+      <div>
+        <a href="https://github.com/dece2183" class="row">
+          <img src="icons/GitHub-Mark.png" width="20px">
+          <span class="v-center" style="margin-left: 4px;">DECE2183</span>
+        </a>
+      </div>
+    </footer>
   </body>
 
   <script type="text/javascript" src="wasm/wasm_exec.js"></script>
