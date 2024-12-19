@@ -4,6 +4,7 @@
     <title>hexowl - online calculator</title>
 
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <meta name="author" content="Timofey Korolik (DECE2183)"/>
     <meta name="description" content="Web version of hexowl calculator. Hexowl is a lightweight and flexible programmer's calculator with variables and functions. The main purpose of hexowl is to perform operations on numbers regardless of their base. A single expression can contain decimal, hexadecimal and binary numbers."/>
     
@@ -29,7 +30,8 @@
     </header>
 
     <div class="workspace-block row">
-      <div class="column">
+      <button id="showHelpBtn">?</button>
+      <div class="output-block column">
         <div class="output-content">
           <div id="output"></div>
         </div>
@@ -39,7 +41,6 @@
           <button id="inputEnterBtn">↵</button>
         </div>
       </div>
-      <button id="showHelpBtn">?</button>
       <div id="help-block" class="hidden">
         <header class="row">
           <button id="closeHelpBtn">🞫</button>

@@ -58,6 +58,7 @@
 
 pre {
   min-height: 18px;
+  margin: 0;
 }
 
 a, a:hover, a:visited{
@@ -156,26 +157,31 @@ body {
   flex-direction: column;
 }
 
-div.workspace-block {
+.workspace-block {
   position: relative;
   overflow: hidden;
 }
 
-div.output-content {
+.output-block {
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.output-content {
   flex-grow: 1;
   padding: 12px;
   overflow-y: auto;
   background-color: #2E4756;
 }
-#output > pre {
-  margin: 0;
+#output > div {
+  overflow-x: auto;
 }
 
 #help-block {
   overflow-x: hidden;
   overflow-y: auto;
-  max-width: 560px;
-  transition: width 0.1s;
+  max-width: 620px;
+  min-width: min(100vh, 540px);
 }
 #help-block::-webkit-scrollbar {
   width: 18px;

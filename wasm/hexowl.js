@@ -47,8 +47,9 @@ function saveFile(name, content) {
 
 function highlightLn(ln, text) {
   let escBegin = false;
-  let escSpan = document.createElement("span");
+  let escSpan = document.createElement("code");
   let escArgs = "";
+  let textNode = "";
 
   if (text.length == 0) {
     return;
@@ -56,9 +57,11 @@ function highlightLn(ln, text) {
 
   for (let ch of text) {
     if (ch == '\x1B') {
-      escBegin = true;
+      escSpan.append(document.createTextNode(textNode));
+      textNode = "";
       ln.append(escSpan);
-      escSpan = document.createElement("span");
+      escSpan = document.createElement("code");
+      escBegin = true;
       continue;
     }
     
@@ -75,24 +78,27 @@ function highlightLn(ln, text) {
         escArgs += ch;
         continue;
       }
+    } else if (ch == '\n') {
+      escSpan.append(document.createTextNode(textNode));
+      escSpan.append(document.createElement("br"));
+      textNode = "";
     } else {
-      escSpan.innerText += ch;
+      textNode += ch;
     }
   }
 
+  escSpan.append(document.createTextNode(textNode));
   ln.append(escSpan);
 }
 
 function printOutput(out) {
-  let outDiv = document.querySelector("#output");
-  let lines = out.split("\n");
-
-  lines.forEach(line => {
-    let newln = document.createElement("pre");
-    highlightLn(newln, line);
-    outDiv.append(newln);
-    newln.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-  });
+  let outdiv = document.querySelector("#output");
+  let newdiv = document.createElement("div");
+  let newln = document.createElement("pre");
+  highlightLn(newln, out);
+  newdiv.append(newln);
+  outdiv.append(newdiv);
+  newdiv.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 }
 
 function begin() {
