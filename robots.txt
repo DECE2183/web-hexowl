@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /fonts/
+Disallow: /hexowl/
+Disallow: /icons/
+Disallow: /wasm/
+Allow: /index.html
