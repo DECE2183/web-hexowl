@@ -1,6 +1,9 @@
 User-agent: *
-Disallow: /fonts/
-Disallow: /hexowl/
-Disallow: /icons/
-Disallow: /wasm/
+Disallow: /
 Allow: /index.html
+Allow: /favicon.svg
+Allow: /favicon-192x192.png
+Allow: /favicon-120x120.png
+Allow: /favicon-96x96.png
+Allow: /favicon-32x32.png
+Allow: /favicon-16x16.png
